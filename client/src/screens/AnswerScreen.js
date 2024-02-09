@@ -53,7 +53,7 @@ export default function AnswerScreen({navigation}) {
     return (
       
       <ScrollView>
-        <View className="flex-1 flex bg-blue-100 items-center justify-center">
+        <View className="flex-1 flex bg-blue-100 items-center justify-center ">
         <Text className="py-6 px-2 text-xl text-center text-bold">Here's how other people responded to today's question</Text>
         {responses.map((e) =>
           <ResponseCard
