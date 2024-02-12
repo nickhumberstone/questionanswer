@@ -1,12 +1,12 @@
 import express from 'express';
 import cors from 'cors';
-import { getAnswers } from './database.js';
+import { getAnswers } from './databaselogic.js';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-//for displaying all responses
+// for displaying all responses
 app.use("/", async (req, res) => {
     const answers = await getAnswers()
     res.send(answers);
@@ -23,5 +23,3 @@ app.listen(3030, ()=>{
     console.log("Server started on 3030")
 })
 
-const test = getAnswers();
-console.log(test);

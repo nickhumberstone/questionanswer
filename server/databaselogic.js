@@ -11,6 +11,6 @@ const pool = mysql.createPool({
 }).promise()
 
 export async function getAnswers() {
-    const [rows] = await pool.query("SELECT * FROM responses")
-        return rows
+    const [output] = await pool.query("SELECT text_content FROM responses where response_id = 1")
+        return output[0].text_content
     }
