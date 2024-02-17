@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 const QuestionForm = () => {
 
     const [answer, setAnswer] = useState("");
-    const [user, setUser] = useState("")
+    const [user, setUser] = useState("1")
     const [responseSubmitted, setResponseSubmitted] = useState(false)
     const todayQuestion = "Whats your main hobby?"
 
@@ -22,28 +22,18 @@ const QuestionForm = () => {
         }
       };
 
-      const logAnswers = async() => {
-        const response = await fetch('https://nasty-camels-lie.loca.lt/answers');
-        const answers = response.json();
-        console.log(answers);
-        console.log(response)
-      };
-
       const postAnswer = async() => {
+        const data = {"user_id": user, "text_content" : answer}
         const response = await fetch('https://nasty-camels-lie.loca.lt/add', {
           method: "POST",
           headers: {
-            //"Accept": "application/json",
+            "Accept" : "application/json",
             "Content-Type": "application/json"
           },
-          body: JSON.stringify(
-            {
-              "user_id": "1",
-          "text_content":"Coffee. It is a hobby, okay!"}
-          )
+          body: JSON.stringify(data)
         });
-        answers = await response.json();
-        console.log(answers);
+        setResponseSubmitted(true);
+       console.log("Response sent");
       };
 
   return (
@@ -65,17 +55,10 @@ const QuestionForm = () => {
       maxLength={140}
       multiline={true}
       />
-      <TouchableOpacity
-      onPress={logAnswers}
-      className="p-2 m-2 bg-blue-200 rounded-lg"><Text className="text-center">Test - console.log answers</Text></TouchableOpacity>
-
+      
 <TouchableOpacity
       onPress={postAnswer}
-      className="p-2 m-2 bg-blue-200 rounded-lg"><Text className="text-center">Test - post answers</Text></TouchableOpacity>
-
-      <TouchableOpacity
-      onPress={testSubmit}
-      className="p-2 m-2 bg-blue-200 rounded-lg"><Text className="text-center">Test - console.log movies</Text></TouchableOpacity>
+      className="p-2 m-2 bg-blue-200 rounded-lg"><Text className="text-center">Send it!</Text></TouchableOpacity>
 
       {responseSubmitted && (
         <Text className="text-center">Response sent!</Text>

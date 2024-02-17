@@ -11,9 +11,14 @@ const pool = mysql.createPool({
 }).promise()
 
 export async function getAnswers() {
-    const [output] = await pool.query("SELECT * FROM responses")
+    const [output] = await pool.query("SELECT user_id, text_content FROM responses ORDER BY RAND() LIMIT 5")
         return output
         //.text_content
+    }
+
+    export async function getAllAnswers() {
+        const [output] = await pool.query("SELECT * FROM responses")
+        return output
     }
 
 export async function addAnswer(user_id, text_content) {

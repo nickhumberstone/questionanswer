@@ -1,5 +1,7 @@
 import {View, Text, ScrollView} from 'react-native'
+import { useEffect, useState } from 'react';
 import ResponseCard from '../components/ResponseCard';
+
 
 const responses = [
   {
@@ -16,54 +18,54 @@ const responses = [
     response: "I really enjoy going to Toastmasters, it's a public speaking club where you learn and develop public speaking",
     user: "Skids",
     key:"3",
-  },
-  {
-    response: "I like going for walks in the park and feeding ducks",
-    user: "Zoey",
-    key:"5",
-  },
-  {
-    response: "Socialising",
-    user: "Agnes",
-    key:"6",
-  },
-  {
-    response: "I think the word hobbies is dumb",
-    user: "Rex",
-    key:"7",
-  },
-  {
-    response: "idek bro",
-    user: "Akachi",
-    key:"8",
-  },
-  {
-    response: "I like swimming in the sea",
-    user: "Jim",
-    key:"9",
-  },
-  {
-    response: "I like swimming sometimes",
-    user: "User123",
-    key:"10",
-  },
-
+  }
 ]
 export default function AnswerScreen({navigation}) {
+
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
+  const fetchData = async() => {
+    const response = await fetch('https://nasty-camels-lie.loca.lt/answers');
+    const answers = await response.json();
+    setData(answers)
+    console.log(answers);
+    setLoading(false)
+    console.log(response)
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [])
+
     return (
       
       <ScrollView>
-        <View className="flex-1 flex bg-blue-100 items-center justify-center ">
+        <View className="flex-1 flex bg-blue-100 items-center h-screen ">
         <Text className="py-6 px-2 text-xl text-center text-bold">Here's how other people responded to today's question</Text>
-        {responses.map((e) =>
-          <ResponseCard
-          response={e.response}
-          user={e.user}
-          id={e.key}/>
-        )}
+
+        {loading && (
+        <Text className="text-center">Responses are loading!</Text>
+      )}
+
+      {data && (
+        data.map((e) =>
+        <ResponseCard
+        response={e.text_content}
+        user={e.user_id}
+        id={e.key}/>
+      ))}
+
+        
         </View>
       </ScrollView>
         
     );
   }
   
+  // {responses.map((e) =>
+        //   <ResponseCard
+        //   response={e.response}
+        //   user={e.user}
+        //   id={e.key}/>
+        // )}
