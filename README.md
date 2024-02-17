@@ -9,3 +9,7 @@ Ensure Docker is running
 Open up Pixel Device in Android Studio
 
 Press 'a' in client terminal to open in Android Emulator
+
+When running locally, you need to expose your server port with localtunnel:
+
+lt --port 3030 --subdomain questionanswer

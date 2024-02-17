@@ -13,7 +13,6 @@ const pool = mysql.createPool({
 export async function getAnswers() {
     const [output] = await pool.query("SELECT user_id, text_content FROM responses ORDER BY RAND() LIMIT 5")
         return output
-        //.text_content
     }
 
     export async function getAllAnswers() {
@@ -26,4 +25,20 @@ export async function addAnswer(user_id, text_content) {
     INSERT into responses (user_id, text_content)
     VALUES (?, ?)`, [user_id, text_content])
     return output[0]
+}
+
+export async function getDailyTenAnswers() {
+    const d = new Date();
+    let year = d.getFullYear()
+    //month is zero index, so we must +1 the value
+    let month = d.getMonth() + 1
+    let day = d.getDate()
+    let datetoday = year + "-" + month + "-" + day;
+    const [output] = await pool.query(`
+    SELECT response_id, user_id, text_content 
+    FROM responses 
+    WHERE DATE(created_datetime) = ? 
+    ORDER BY RAND() LIMIT 10`, [datetoday])
+        return output
+       
 }

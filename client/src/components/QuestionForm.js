@@ -22,9 +22,20 @@ const QuestionForm = () => {
         }
       };
 
+      //testing JS date stuff
+      const logDate =() => {
+        const d = new Date();
+    let year = d.getFullYear()
+    //month is zero index, so we must +1 the value
+    let month = d.getMonth() + 1
+    let day = d.getDate()
+    let datetoday = year + "-" + month + "-" + day;
+    console.log(datetoday)
+      }
+
       const postAnswer = async() => {
         const data = {"user_id": user, "text_content" : answer}
-        const response = await fetch('https://nasty-camels-lie.loca.lt/add', {
+        const response = await fetch('https://questionanswer.loca.lt//add', {
           method: "POST",
           headers: {
             "Accept" : "application/json",
@@ -59,6 +70,10 @@ const QuestionForm = () => {
 <TouchableOpacity
       onPress={postAnswer}
       className="p-2 m-2 bg-blue-200 rounded-lg"><Text className="text-center">Send it!</Text></TouchableOpacity>
+
+<TouchableOpacity
+      onPress={logDate}
+      className="p-2 m-2 bg-blue-200 rounded-lg"><Text className="text-center">TESTING DATE</Text></TouchableOpacity>
 
       {responseSubmitted && (
         <Text className="text-center">Response sent!</Text>
