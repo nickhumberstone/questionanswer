@@ -31,7 +31,7 @@ app.post("/add", async (req, res) => {
     const {user_id, text_content} = req.body
     const output = await addAnswer(user_id, text_content)
     res.status(201).send(output)
-    console.log(output) 
+    
 })
 
 //for getting the question of the day (7 day rotation currently)

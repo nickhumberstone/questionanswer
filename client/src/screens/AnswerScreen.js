@@ -33,7 +33,12 @@ export default function AnswerScreen({navigation}) {
         key={e.response_id}
         />
       ))}
-      <TouchableOpacity><Text>Check for new responses</Text></TouchableOpacity>
+
+      <TouchableOpacity
+      onPress={fetchData}
+      className="p-2 m-2 bg-blue-200 rounded-lg"><Text className="text-center">Check for, and randomise new responses</Text></TouchableOpacity>
+
+      
         </View>
       </ScrollView>
         
