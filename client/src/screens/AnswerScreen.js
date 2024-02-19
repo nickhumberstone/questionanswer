@@ -1,4 +1,4 @@
-import {View, Text, ScrollView} from 'react-native'
+import {View, Text, ScrollView, TouchableOpacity} from 'react-native'
 import { useEffect, useState } from 'react';
 import ResponseCard from '../components/ResponseCard';
 
@@ -30,9 +30,10 @@ export default function AnswerScreen({navigation}) {
         <ResponseCard
         response={e.text_content}
         user={e.user_id}
-        id={e.response_id}
+        key={e.response_id}
         />
       ))}
+      <TouchableOpacity><Text>Check for new responses</Text></TouchableOpacity>
         </View>
       </ScrollView>
         

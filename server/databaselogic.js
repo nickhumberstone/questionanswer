@@ -42,3 +42,14 @@ export async function getDailyTenAnswers() {
         return output
        
 }
+
+export async function getDailyQuestion() {
+    //getDay starts with Sunday (index 0)
+    const dayOfWeek = new Date().getDay();
+    const [output] = await pool.query(`
+    SELECT dailyQuestion 
+    FROM questions 
+    WHERE dayOfWeek = ? 
+    LIMIT 1`, [dayOfWeek])
+        return output
+}

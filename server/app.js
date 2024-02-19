@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { getAnswers, addAnswer, getAllAnswers, getDailyTenAnswers } from './databaselogic.js';
+import { getAnswers, addAnswer, getAllAnswers, getDailyTenAnswers, getDailyQuestion } from './databaselogic.js';
 
 
 const app = express();
@@ -32,6 +32,12 @@ app.post("/add", async (req, res) => {
     const output = await addAnswer(user_id, text_content)
     res.status(201).send(output)
     console.log(output) 
+})
+
+//for getting the question of the day (7 day rotation currently)
+app.use("/dailyquestion", async (req,res) => {
+    const output = await getDailyQuestion()
+    res.send(output);
 })
 
 //error responses

@@ -1,5 +1,5 @@
 import { Text, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // This is a card that appears on the QuestionScreen
 const QuestionForm = () => {
@@ -7,35 +7,23 @@ const QuestionForm = () => {
     const [answer, setAnswer] = useState("");
     const [user, setUser] = useState("1")
     const [responseSubmitted, setResponseSubmitted] = useState(false)
-    const todayQuestion = "Whats your main hobby?"
+    const [question, setQuestion] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    
-      const testSubmit = async () => {
-        try {
-          const response = await fetch('https://reactnative.dev/movies.json');
-          const json = await response.json();
-          console.log(json.movies);
-        } catch (error) {
-          console.error(error);
-        } finally {
-          console.log("done")
-        }
-      };
+    const fetchDailyQuestion = async() => {
+      const response = await fetch('https://questionanswer.loca.lt/dailyQuestion')
+      const output = await response.json()
+    setQuestion(output[0].dailyQuestion)
+    setLoading(false)
+  };
 
-      //testing JS date stuff
-      const logDate =() => {
-        const d = new Date();
-    let year = d.getFullYear()
-    //month is zero index, so we must +1 the value
-    let month = d.getMonth() + 1
-    let day = d.getDate()
-    let datetoday = year + "-" + month + "-" + day;
-    console.log(datetoday)
-      }
+  useEffect(() => {
+    fetchDailyQuestion();
+  }, [])
 
-      const postAnswer = async() => {
+        const postAnswer = async() => {
         const data = {"user_id": user, "text_content" : answer}
-        const response = await fetch('https://questionanswer.loca.lt//add', {
+        const response = await fetch('https://questionanswer.loca.lt/add', {
           method: "POST",
           headers: {
             "Accept" : "application/json",
@@ -49,7 +37,8 @@ const QuestionForm = () => {
 
   return (
     <KeyboardAvoidingView className="p-5 bg-gray-100 mb-2 shadow-lg shadow-black w-4/5 flex rounded-md">
-      <Text className="text-center text-lg font-bold">{todayQuestion}</Text>
+      {loading && (<Text>LOADINGGGG</Text>)}
+      {question && (<Text className="text-center text-lg font-bold">{question}</Text>)}
       <TextInput
       className="bg-blue-300 m-2 rounded-lg text-center p-5"
       placeholder='User ID'
@@ -70,10 +59,6 @@ const QuestionForm = () => {
 <TouchableOpacity
       onPress={postAnswer}
       className="p-2 m-2 bg-blue-200 rounded-lg"><Text className="text-center">Send it!</Text></TouchableOpacity>
-
-<TouchableOpacity
-      onPress={logDate}
-      className="p-2 m-2 bg-blue-200 rounded-lg"><Text className="text-center">TESTING DATE</Text></TouchableOpacity>
 
       {responseSubmitted && (
         <Text className="text-center">Response sent!</Text>

@@ -13,3 +13,8 @@ Press 'a' in client terminal to open in Android Emulator
 When running locally, you need to expose your server port with localtunnel:
 
 lt --port 3030 --subdomain questionanswer
+
+
+npm run dev --prefix server
+yarn start --prefix client
+lt --port 3030 --subdomain questionanswer
