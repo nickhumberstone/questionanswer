@@ -18,3 +18,5 @@ lt --port 3030 --subdomain questionanswer
 npm run dev --prefix server
 yarn start --prefix client
 lt --port 3030 --subdomain questionanswer
+
+When using the Expo Dev app on device, you need to start the client with --tunnel flag to make it work
