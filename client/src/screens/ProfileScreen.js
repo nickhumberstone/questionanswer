@@ -1,6 +1,8 @@
 import {View, Text, Image, TouchableOpacity } from 'react-native'
+import { useAuth0 } from 'react-native-auth0'
 
 export default function ProfileScreen({navigation}) {
+  const {user, error} = useAuth0();
 
   const data = {
     name: "Nick Humberstone",
@@ -20,6 +22,10 @@ export default function ProfileScreen({navigation}) {
         <Text className="text-3xl p-2">{data.name}</Text>
         <Text className="text-xl p-1">Age: {data.age}</Text>
         <Text className="text-xl p-1">Email: {data.email}</Text>
+
+        {user && <Text>Logged in as {user.name}</Text>}
+            {!user && <Text>Not logged in</Text>}
+            {error && <Text>{error.message}</Text>}
         </View>
         <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 w-1/2 h-10 items-center justify-center" onPress={editProfile}><Text>Edit Profile</Text></TouchableOpacity>
       </View>
