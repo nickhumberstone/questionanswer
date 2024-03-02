@@ -1,14 +1,20 @@
 import { Text, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
+import { useAuth0 } from 'react-native-auth0';
 
 const LoginForm = () => {
 
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("")
+    const {authorize} = useAuth0();
   
-const login = () => {
-  console.log("Login clicked. Values of: " + email + ", " + password)
-}
+const login = async () => {
+  try {
+      await authorize();
+  } catch (e) {
+      console.log(e);
+  }
+};
 
 const openRegistration = () => {
   console.log("Register here - clicked")

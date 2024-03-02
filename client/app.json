@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nickhumberstone.questionanswer"
     },
     "android": {
       "adaptiveIcon": {
@@ -31,6 +32,14 @@
       "eas": {
         "projectId": "75d08780-7494-4738-97d1-19856d9d0675"
       }
-    }
+    },
+    "plugins": [
+      [
+        "react-native-auth0",
+        {
+          "domain": "dev-questionanswer.uk.auth0.com"
+        }
+      ]
+    ]
   }
 }
