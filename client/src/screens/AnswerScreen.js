@@ -1,14 +1,19 @@
 import {View, Text, ScrollView, TouchableOpacity} from 'react-native'
 import { useEffect, useState } from 'react';
 import ResponseCard from '../components/ResponseCard';
+import { useAuth0 } from 'react-native-auth0';
 
 export default function AnswerScreen({navigation}) {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const user = useAuth0();
+  const user_id = user.sub;
   
   const fetchData = async() => {
-    const response = await fetch('https://questionanswer.loca.lt/dailyten');
+    const data = {user_id}
+    const response = await fetch('https://questionanswer.loca.lt/dailyanswers')
     const answers = await response.json();
     setData(answers)
     setLoading(false)

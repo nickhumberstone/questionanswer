@@ -1,18 +1,11 @@
 import express from 'express';
 import cors from 'cors';
-import { getAnswers, addAnswer, getAllAnswers, getDailyTenAnswers, getDailyQuestion } from './databaselogic.js';
+import { getAnswers, addAnswer, getAllAnswers, getDailyAnswers, getDailyQuestion, createUserProfile } from './databaselogic.js';
 
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-
-//display daily 10 responses
-app.use("/dailyten", async (req, res) => {
-    const answers = await getDailyTenAnswers()
-   res.send(answers);
-})
 
 // for displaying all responses
 app.use("/answers", async (req, res) => {
@@ -26,10 +19,26 @@ app.use("/allanswers", async (req, res) => {
    res.send(answers);
 })
 
+//display daily responses
+// GET REQUEST HAS PARAMETERS PASSED VIA URL STRING
+app.use("/dailyanswers", async (req, res) => {
+    const {user} = req.body
+    const answers = await getDailyAnswers(user)
+   res.send(answers);
+})
+
 // for creating new response
 app.post("/add", async (req, res) => {
     const {user_id, text_content} = req.body
     const output = await addAnswer(user_id, text_content)
+    res.status(201).send(output)
+    
+})
+
+// for creating new profiles
+app.post("/newuser", async (req, res) => {
+    const {user_id} = req.body
+    const output = await createUserProfile(user_id)
     res.status(201).send(output)
     
 })

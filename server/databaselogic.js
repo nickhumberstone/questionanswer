@@ -27,7 +27,7 @@ export async function addAnswer(user_id, text_content) {
     return output[0]
 }
 
-export async function getDailyTenAnswers() {
+export async function getDailyAnswers(user) {
     const d = new Date();
     let year = d.getFullYear()
     //month is zero index, so we must +1 the value
@@ -37,8 +37,9 @@ export async function getDailyTenAnswers() {
     const [output] = await pool.query(`
     SELECT response_id, user_id, text_content 
     FROM responses 
-    WHERE DATE(created_datetime) = ? 
-    ORDER BY RAND() LIMIT 10`, [datetoday])
+    WHERE DATE(created_datetime) = ?
+    AND user_id != ?
+    ORDER BY RAND() LIMIT 5`, [datetoday, user])
         return output
        
 }
@@ -52,4 +53,11 @@ export async function getDailyQuestion() {
     WHERE dayOfWeek = ? 
     LIMIT 1`, [dayOfWeek])
         return output
+}
+
+export async function createUserProfile(user_id) {
+    const [output] = await pool.query(`
+    INSERT into user_profile (user_id)
+    VALUES (?)`, [user_id])
+    return output[0]
 }

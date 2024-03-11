@@ -1,11 +1,11 @@
 import { Text, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
+import { useAuth0 } from 'react-native-auth0';
 
 // This is a card that appears on the QuestionScreen
 const QuestionForm = () => {
 
     const [answer, setAnswer] = useState("");
-    const [user, setUser] = useState("1")
     const [responseSubmitted, setResponseSubmitted] = useState(false)
     const [question, setQuestion] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -17,12 +17,16 @@ const QuestionForm = () => {
     setLoading(false)
   };
 
+  const {user} = useAuth0();
+  const user_id = user.sub;
+
   useEffect(() => {
     fetchDailyQuestion();
   }, [])
 
         const postAnswer = async() => {
-        const data = {"user_id": user, "text_content" : answer}
+        const data = {"user_id": user.sub, "text_content" : answer}
+        console.log("Post request initiated, to /add, with body of: " + data)
         const response = await fetch('https://questionanswer.loca.lt/add', {
           method: "POST",
           headers: {
@@ -39,14 +43,6 @@ const QuestionForm = () => {
     <KeyboardAvoidingView className="p-5 bg-gray-100 mb-2 shadow-lg shadow-black w-4/5 flex rounded-md">
       {loading && (<Text>LOADINGGGG</Text>)}
       {question && (<Text className="text-center text-lg font-bold">{question}</Text>)}
-      <TextInput
-      className="bg-blue-300 m-2 rounded-lg text-center p-5"
-      placeholder='User ID'
-      value={user}
-      onChangeText={setUser}
-      maxLength={2}
-      multiline={true}
-      />
       <TextInput
       className="bg-blue-300 m-2 rounded-lg text-center p-5"
       placeholder='Answer here'

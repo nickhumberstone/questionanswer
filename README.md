@@ -17,6 +17,9 @@ lt --port 3030 --subdomain questionanswer
 
 npm run dev --prefix server
 yarn start --prefix client
-lt --port 3030 --subdomain questionanswer
+lt --port 3030 --subdomain questionanswer (for testing using browser to access the server)
 
 When using the Expo Dev app on device, you need to start the client with --tunnel flag to make it work
+ npx expo start --dev-client --tunnel
+
+ https://questionanswer.loca.lt/answers is how to access answers via the browser

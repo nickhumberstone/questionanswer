@@ -7,6 +7,7 @@ const LoginForm = () => {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("")
     const {authorize} = useAuth0();
+    const {user} = useAuth0();
   
 const login = async () => {
   try {
@@ -14,6 +15,21 @@ const login = async () => {
   } catch (e) {
       console.log(e);
   }
+};
+
+
+const createUserProfile = async() => {
+  const data = {"user_id": user.sub}
+  console.log("Post request initiated, to /newuser, with body of: " + data)
+  const response = await fetch('https://questionanswer.loca.lt/newuser', {
+    method: "POST",
+    headers: {
+      "Accept" : "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+ console.log("New user response sent");
 };
 
 const openRegistration = () => {
@@ -46,7 +62,8 @@ const openRegistration = () => {
 
   return (
     <KeyboardAvoidingView className="p-5 bg-gray-100 mb-2 shadow-lg shadow-black w-4/5 flex rounded-md">
-      <TextInput
+
+      {/* <TextInput
       className="bg-blue-300 m-2 rounded-lg text-center p-5"
       placeholder='Email'
       value={email}
@@ -59,13 +76,17 @@ const openRegistration = () => {
       value={password}
       onChangeText={setPassword}
       maxLength={100}
-      />
+      /> */}
       
 <TouchableOpacity
       onPress={login}
-      className="p-2 m-2 bg-blue-200 rounded-lg"><Text className="text-center">Login</Text></TouchableOpacity>
+      className="p-2 m-2 bg-blue-200 rounded-lg"><Text className="text-center">Log in with Auth0</Text></TouchableOpacity>
 
       <Text onPress={openRegistration}>Don't have an account? Register here.</Text>
+
+      <TouchableOpacity
+      onPress={createUserProfile}
+      className="p-2 m-2 bg-blue-200 rounded-lg"><Text className="text-center">Create User Profile</Text></TouchableOpacity>
 
     </KeyboardAvoidingView>
       

@@ -24,6 +24,9 @@ export default function ProfileScreen({navigation}) {
         <Text className="text-xl p-1">Email: {data.email}</Text>
 
         {user && <Text>Logged in as {user.name}</Text>}
+        {user && <Text>User ID is {user.sub}</Text>}
+        {user && <Text> picture link is {user.picture}</Text>}
+        {user && <Text> email is {user.email}</Text>}
             {!user && <Text>Not logged in</Text>}
             {error && <Text>{error.message}</Text>}
         </View>
