@@ -8,13 +8,12 @@ export default function AnswerScreen({navigation}) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const user = useAuth0();
+  const {user} = useAuth0();
   const user_id = user.sub;
   
-  const fetchData = async() => {
-    const data = {user_id}
-    const response = await fetch('https://questionanswer.loca.lt/dailyanswers')
-    const answers = await response.json();
+  const fetchData = async(user) => {
+        const response = await fetch(`https://questionanswer.loca.lt/dailyanswers?`+ new URLSearchParams({user_id : user_id}))
+        const answers = await response.json();
     setData(answers)
     setLoading(false)
   };

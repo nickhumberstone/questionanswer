@@ -20,9 +20,9 @@ app.use("/allanswers", async (req, res) => {
 })
 
 //display daily responses
-// GET REQUEST HAS PARAMETERS PASSED VIA URL STRING
+// queries are added by appending ?user_id=[id] to the endpoint
 app.use("/dailyanswers", async (req, res) => {
-    const {user} = req.body
+    const user = req.query.user_id
     const answers = await getDailyAnswers(user)
    res.send(answers);
 })
