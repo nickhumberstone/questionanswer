@@ -12,6 +12,7 @@ export default function AnswerScreen() {
   const user_id = user.sub;
   
   const fetchData = async(user) => {
+    console.log("fetchData triggered")
         const response = await fetch(`https://questionanswer.loca.lt/dailyanswers?`+ new URLSearchParams({user_id : user_id}))
         const answers = await response.json();
     setData(answers)

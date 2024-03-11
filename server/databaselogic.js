@@ -41,7 +41,14 @@ export async function getDailyAnswers(user) {
     AND user_id != ?
     ORDER BY RAND() LIMIT 5`, [datetoday, user])
         return output
-       
+}
+
+export async function getMyAnswers(user) {
+    const [output] = await pool.query(`
+    SELECT response_id, user_id, text_content 
+    FROM responses 
+    WHERE user_id = ?`, [user])
+        return output
 }
 
 export async function getDailyQuestion() {

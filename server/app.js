@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { getAnswers, addAnswer, getAllAnswers, getDailyAnswers, getDailyQuestion, createUserProfile } from './databaselogic.js';
+import { getAnswers, addAnswer, getAllAnswers, getDailyAnswers, getMyAnswers, getDailyQuestion, createUserProfile } from './databaselogic.js';
 
 
 const app = express();
@@ -24,6 +24,14 @@ app.use("/allanswers", async (req, res) => {
 app.use("/dailyanswers", async (req, res) => {
     const user = req.query.user_id
     const answers = await getDailyAnswers(user)
+   res.send(answers);
+})
+
+//display your previous responses
+// queries are added by appending ?user_id=[id] to the endpoint
+app.use("/myanswers", async (req, res) => {
+    const user = req.query.user_id
+    const answers = await getMyAnswers(user)
    res.send(answers);
 })
 
