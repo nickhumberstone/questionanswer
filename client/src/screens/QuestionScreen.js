@@ -1,7 +1,7 @@
 import {View, Text} from 'react-native'
 import QuestionForm from '../components/QuestionForm';
 
-export default function QuestionScreen({navigation}) {
+export default function QuestionScreen() {
     return (
       <View className="flex-1 flex bg-blue-100 items-center justify-center h-screen w-screen">
         <Text className="py-6 px-2 text-xl text-center text-bold">Today's Question:</Text>

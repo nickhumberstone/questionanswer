@@ -1,7 +1,7 @@
 import {View, Text, Image, TouchableOpacity } from 'react-native'
 import { useAuth0 } from 'react-native-auth0'
 
-export default function ProfileScreen({navigation}) {
+export default function ProfileScreen() {
   const {user, error} = useAuth0();
 
   const data = {
@@ -14,6 +14,16 @@ export default function ProfileScreen({navigation}) {
   const editProfile = () => {
     console.log("edit profile pressed")
   }
+
+  const {clearSession} = useAuth0();
+
+  const logout = async () => {
+      try {
+          await clearSession();
+      } catch (e) {
+          console.log(e);
+      }
+  };
 
     return (
       <View className="flex-1 items-center justify-center bg-slate-200">
@@ -31,6 +41,8 @@ export default function ProfileScreen({navigation}) {
             {error && <Text>{error.message}</Text>}
         </View>
         <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 w-1/2 h-10 items-center justify-center" onPress={editProfile}><Text>Edit Profile</Text></TouchableOpacity>
+
+        <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 w-1/2 h-10 items-center justify-center" onPress={logout}><Text>Log Out</Text></TouchableOpacity>
       </View>
     );
   }

@@ -2,7 +2,7 @@ import {View, Text, ScrollView, TouchableOpacity} from 'react-native'
 import LoginForm from '../components/LoginForm';
 import LogoutButton from '../components/Buttons/LogoutButton';
 
-export default function LoginScreen({navigation}) {
+export default function LoginScreen() {
 
     return (
       <ScrollView>

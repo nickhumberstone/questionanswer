@@ -23,3 +23,6 @@ When using the Expo Dev app on device, you need to start the client with --tunne
  npx expo start --dev-client --tunnel
 
  https://questionanswer.loca.lt/answers is how to access answers via the browser
+
+ How the app and sign in is set up:
+ We have our central app.js which is the app itself. Within it is a condition that checks if the user is logged in, and shows them either the app, or the login/register screens. This had the added benefit of continuing to show someone the logged in experience if the login token persists, saving them from having to log in or to view the log-in screen each time.

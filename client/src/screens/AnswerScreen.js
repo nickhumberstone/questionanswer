@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import ResponseCard from '../components/ResponseCard';
 import { useAuth0 } from 'react-native-auth0';
 
-export default function AnswerScreen({navigation}) {
+export default function AnswerScreen() {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
