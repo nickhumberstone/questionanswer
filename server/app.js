@@ -64,7 +64,7 @@ app.use((err, req, res, next) => {
   })
 
 
-app.listen(3030, ()=>{
+app.listen(3306, ()=>{
     console.log("Server started on 3030. Make sure Docker is running, and localtunnel is exposing port 3030 to questionanswer subdomain")
 })
 
