@@ -17,6 +17,7 @@
     "expo-dev-client": "~2.4.13",
     "expo-splash-screen": "~0.20.5",
     "expo-status-bar": "~1.6.0",
+    "expo-updates": "~0.18.19",
     "express": "^4.18.2",
     "nativewind": "^2.0.11",
     "react": "18.2.0",
