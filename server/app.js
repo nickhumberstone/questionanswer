@@ -7,6 +7,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+//welcome page
+app.use("/", async (req,res) => {
+    return "Hello world";
+})
+
 // for displaying all responses
 app.use("/answers", async (req, res) => {
     const answers = await getAnswers()
@@ -65,7 +70,7 @@ app.use((err, req, res, next) => {
 
 
 app.listen(3306, ()=>{
-    console.log("Server started on 3030. Make sure Docker is running, and localtunnel is exposing port 3030 to questionanswer subdomain")
+    console.log("Server started on 3306. Make sure Docker is running, and localtunnel is exposing port 3306 to questionanswer subdomain")
 })
 
 // await addAnswer("100","3","third answer is here")
