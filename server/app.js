@@ -7,6 +7,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+//set favicon
+app.use('/favicon.ico', express.static('favicon.ico'));
+
 //welcome page
 app.use("/", async (req,res) => {
     res.send("Hello world");
