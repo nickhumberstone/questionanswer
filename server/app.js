@@ -72,7 +72,7 @@ app.use((err, req, res, next) => {
   })
 
 
-app.listen(process.env.port || 3306, ()=>{
+app.listen(process.env.PORT || 3306, ()=>{
     console.log("Server started on 3306. Make sure Docker is running, and localtunnel is exposing port 3306 to questionanswer subdomain")
 })
 
