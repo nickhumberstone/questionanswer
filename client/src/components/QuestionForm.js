@@ -11,7 +11,7 @@ const QuestionForm = () => {
     const [loading, setLoading] = useState(true);
 
     const fetchDailyQuestion = async() => {
-      const response = await fetch('https://questionanswer.loca.lt/dailyQuestion')
+      const response = await fetch('https://questionanswer-a72d97c4c83c.herokuapp.com/dailyQuestion')
       const output = await response.json()
     setQuestion(output[0].dailyQuestion)
     setLoading(false)
@@ -27,7 +27,7 @@ const QuestionForm = () => {
         const postAnswer = async() => {
         const data = {"user_id": user.sub, "text_content" : answer}
         console.log("Post request initiated, to /add, with body of: " + data)
-        const response = await fetch('https://questionanswer.loca.lt/add', {
+        const response = await fetch('https://questionanswer-a72d97c4c83c.herokuapp.com/add', {
           method: "POST",
           headers: {
             "Accept" : "application/json",

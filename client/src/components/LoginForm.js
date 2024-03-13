@@ -21,7 +21,7 @@ const login = async () => {
 const createUserProfile = async() => {
   const data = {"user_id": user.sub}
   console.log("Post request initiated, to /newuser, with body of: " + data)
-  const response = await fetch('https://questionanswer.loca.lt/newuser', {
+  const response = await fetch('https://questionanswer-a72d97c4c83c.herokuapp.com/newuser', {
     method: "POST",
     headers: {
       "Accept" : "application/json",

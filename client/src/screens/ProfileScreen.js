@@ -35,7 +35,7 @@ export default function ProfileScreen() {
 
   const fetchData = async(user) => {
     console.log("fetchMyAnswers triggered")
-        const response = await fetch(`https://questionanswer.loca.lt/myanswers?`+ new URLSearchParams({user_id : user_id}))
+        const response = await fetch(`https://questionanswer-a72d97c4c83c.herokuapp.com/myanswers?`+ new URLSearchParams({user_id : user_id}))
         const answers = await response.json();
     setData(answers)
     setLoading(false)
