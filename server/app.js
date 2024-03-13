@@ -9,7 +9,7 @@ app.use(express.json());
 
 //welcome page
 app.use("/", async (req,res) => {
-    return "Hello world";
+    res.send("Hello world");
 })
 
 // for displaying all responses
