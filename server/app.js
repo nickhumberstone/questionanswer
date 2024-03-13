@@ -12,7 +12,7 @@ app.use('/favicon.ico', express.static('favicon.ico'));
 
 //welcome page
 app.use("/", async (req,res) => {
-    res.send("Hello world");
+    res.send("If you're seeing this, then Heroku is properly running the app.js file. Yay.");
 })
 
 // for displaying all responses
