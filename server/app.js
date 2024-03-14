@@ -53,8 +53,8 @@ app.post("/add", async (req, res) => {
 
 // for creating new profiles
 app.post("/newuser", async (req, res) => {
-    const {user_id} = req.body
-    const output = await createUserProfile(user_id)
+    const {user_id, email, given_name, family_name, latitude, longitude} = req.body
+    const output = await createUserProfile(user_id, email, given_name, family_name, latitude, longitude)
     res.status(201).send(output)
     
 })
