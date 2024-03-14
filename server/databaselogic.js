@@ -62,9 +62,9 @@ export async function getDailyQuestion() {
         return output
 }
 
-export async function createUserProfile(user_id) {
+export async function createUserProfile(user_id, email, given_name, family_name, latitude, longitude) {
     const [output] = await pool.query(`
-    INSERT into user_profile (user_id)
-    VALUES (?)`, [user_id])
+    INSERT into user_profile (user_id, email, given_name, family_name, latitude, longitude)
+    VALUES (?,?,?,?,?,?)`, [user_id, email, given_name, family_name, latitude, longitude])
     return output[0]
 }
