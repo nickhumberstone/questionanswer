@@ -1,6 +1,6 @@
 import {View, Text, ScrollView, TouchableOpacity} from 'react-native'
 import { useEffect, useState } from 'react';
-import ResponseCard from '../components/ResponseCard';
+import ResponseCard from '../components/ResponseCardOther';
 import { useAuth0 } from 'react-native-auth0';
 
 export default function AnswerScreen() {
@@ -24,8 +24,8 @@ export default function AnswerScreen() {
   }, [])
 
     return (
-      <ScrollView>
-        <View className="flex-1 flex bg-blue-100 items-center h-screen ">
+      <ScrollView className="h-screen">
+        <View className="flex-1 flex pt-20 bg-blue-100 items-center h-screen">
         <Text className="py-6 px-2 text-xl text-center text-bold">Here's how other people responded to today's question</Text>
         {loading && (
         <Text className="text-center">Responses are loading!</Text>
@@ -41,7 +41,9 @@ export default function AnswerScreen() {
 
       <TouchableOpacity
       onPress={fetchData}
-      className="p-2 m-2 bg-blue-200 rounded-lg"><Text className="text-center">Check for, and randomise new responses</Text></TouchableOpacity>
+      className="p-2 m-2 bg-blue-200 rounded-lg">
+        <Text className="text-center">Check for, and randomise new responses</Text>
+        </TouchableOpacity>
 
       
         </View>

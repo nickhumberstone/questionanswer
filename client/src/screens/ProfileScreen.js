@@ -1,7 +1,7 @@
-import {View, Text, Image, TouchableOpacity } from 'react-native'
+import {View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
 import { useAuth0 } from 'react-native-auth0'
 import { useState, useEffect } from 'react';
-import ResponseCard from '../components/ResponseCard';
+import ResponseCard from '../components/ResponseCardOther';
 
 
 
@@ -46,10 +46,11 @@ export default function ProfileScreen() {
   }, [])
 
     return (
-      <View className="flex-1 items-center justify-center bg-slate-200">
+      <ScrollView className="flex-1  bg-slate-200" contentContainerStyle={{alignItems : 'center', justifyContent: 'center'}}>
         <View className="bg-slate-100 items-center p-2 rounded-md shadow-lg shadow-black ">
         <Image className="w-1/2 aspect-square m-4 h-40" source={require('../assets/images/NickHumberstoneProfilePicture.jpeg')}/>
-        <Text className="text-3xl p-2">{profiledata.name}</Text>
+
+        {/* <Text className="text-3xl p-2">{profiledata.name}</Text>
         <Text className="text-xl p-1">Age: {profiledata.age}</Text>
         <Text className="text-xl p-1">Email: {profiledata.email}</Text>
 
@@ -58,9 +59,9 @@ export default function ProfileScreen() {
         {user && <Text> picture link is {user.picture}</Text>}
         {user && <Text> email is {user.email}</Text>}
             {!user && <Text>Not logged in</Text>}
-            {error && <Text>{error.message}</Text>}
+            {error && <Text>{error.message}</Text>} */}
         </View>
-        <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 w-1/2 h-10 items-center justify-center" onPress={editProfile}><Text>Edit Profile</Text></TouchableOpacity>
+        <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 w-1/2 h-10 justify-center items-center" onPress={editProfile}><Text>Edit Profile</Text></TouchableOpacity>
 
         {data && (
         data.map((e) =>
@@ -71,7 +72,7 @@ export default function ProfileScreen() {
         />
       ))}
 
-        <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 w-1/2 h-10 items-center justify-center" onPress={logout}><Text>Log Out</Text></TouchableOpacity>
-      </View>
+        <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 w-1/2 h-10 justify-center items-center" onPress={logout}><Text>Log Out</Text></TouchableOpacity>
+      </ScrollView>
     );
   }
