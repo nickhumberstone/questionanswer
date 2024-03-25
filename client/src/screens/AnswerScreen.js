@@ -1,6 +1,6 @@
 import {View, Text, ScrollView, TouchableOpacity} from 'react-native'
 import { useEffect, useState } from 'react';
-import ResponseCardOther from '../components/ResponseCardOther';
+import ResponseCard from '../components/ResponseCardOther';
 import { useAuth0 } from 'react-native-auth0';
 
 export default function AnswerScreen() {
@@ -32,7 +32,7 @@ export default function AnswerScreen() {
       )}
       {data && (
         data.map((e) =>
-        <ResponseCardOther
+        <ResponseCard
         response={e.text_content}
         user={e.user_id}
         key={e.response_id}

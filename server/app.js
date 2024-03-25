@@ -37,8 +37,8 @@ app.use("/dailyanswers", async (req, res) => {
 
 //display your previous responses
 // queries are added by appending ?user_id=[id] to the endpoint
-app.use("/myanswers", async (req, res) => { 
-    const {user} = req.query.user_id
+app.use("/myanswers", async (req, res) => {
+    const user = req.query.user_id
     const answers = await getMyAnswers(user)
    res.send(answers);
 })
