@@ -1,4 +1,4 @@
-import {View, Text, ScrollView, TouchableOpacity} from 'react-native'
+import {View, Text, Image, ScrollView, TouchableOpacity} from 'react-native'
 import { useEffect, useState } from 'react';
 import ResponseCard from '../components/ResponseCardOther';
 import { useAuth0 } from 'react-native-auth0';
@@ -24,9 +24,11 @@ export default function AnswerScreen() {
   }, [])
 
     return (
-      <ScrollView className="h-screen">
-        <View className="flex-1 flex pt-20 bg-blue-100 items-center h-screen">
-        <Text className="py-6 px-2 text-xl text-center text-bold">Here's how other people responded to today's question</Text>
+      <ScrollView>
+      <View className="h-screen w-screen bg-white">
+        <View className="flex-1 flex items-center justify-center mx-6 mt-10">
+        <Text className="text-3xl text-center text-[#627bb1] font-bold">Community responses</Text>
+          <Image className="aspect-square h-80" source={require('../assets/images/womanReadingBook.jpg')} />
         {loading && (
         <Text className="text-center">Responses are loading!</Text>
       )}
@@ -42,10 +44,10 @@ export default function AnswerScreen() {
       <TouchableOpacity
       onPress={fetchData}
       className="p-2 m-2 bg-blue-200 rounded-lg">
-        <Text className="text-center">Check for, and randomise new responses</Text>
+        <Text className="text-center text-lg p-2">Click to refresh responses</Text>
         </TouchableOpacity>
 
-      
+      </View>
         </View>
       </ScrollView>
         

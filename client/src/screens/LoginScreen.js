@@ -1,4 +1,4 @@
-import {View, Text, ScrollView, TouchableOpacity, SafeAreaView} from 'react-native'
+import {View, Text, Image, ScrollView, TouchableOpacity, SafeAreaView,} from 'react-native'
 import LoginForm from '../components/LoginForm';
 
 export default function LoginScreen() {
@@ -8,6 +8,7 @@ export default function LoginScreen() {
       
         <View className="flex-1 flex bg-blue-100 items-center justify-center">
         <View className="">
+        <Image className="aspect-square h-80" source={require('../assets/images/womanSearchingBook.jpg')}/>
         <Text className="py-6 px-2 text-4xl text-center text-bold">QuestionAnswer</Text>
         <Text className="text-xl">How it works:</Text>
         <Text className="text-xl">Each day you will be asked a question. What will your answer be?</Text>

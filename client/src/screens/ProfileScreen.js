@@ -13,10 +13,7 @@ export default function ProfileScreen() {
   const [loading, setLoading] = useState(true);
 
   const profiledata = {
-    name: "Nick Humberstone",
-    age: "27",
-    imageURL: "client/src/assets/images/NickHumberstoneProfilePicture.jpeg",
-    email: "nick@email.com"
+    name: "Untitled User",
   }
   
   const editProfile = () => {
@@ -46,33 +43,31 @@ export default function ProfileScreen() {
   }, [])
 
     return (
-      <ScrollView className="flex-1  bg-slate-200" contentContainerStyle={{alignItems : 'center', justifyContent: 'center'}}>
-        <View className="bg-slate-100 items-center p-2 rounded-md shadow-lg shadow-black ">
-        <Image className="w-1/2 aspect-square m-4 h-40" source={require('../assets/images/NickHumberstoneProfilePicture.jpeg')}/>
-
-        {/* <Text className="text-3xl p-2">{profiledata.name}</Text>
-        <Text className="text-xl p-1">Age: {profiledata.age}</Text>
-        <Text className="text-xl p-1">Email: {profiledata.email}</Text>
-
-        {user && <Text>Logged in as {user.name}</Text>}
-        {user && <Text>User ID is {user.sub}</Text>}
-        {user && <Text> picture link is {user.picture}</Text>}
-        {user && <Text> email is {user.email}</Text>}
-            {!user && <Text>Not logged in</Text>}
-            {error && <Text>{error.message}</Text>} */}
+<ScrollView>
+      <View className="h-screen w-screen bg-white">
+        <View className="flex-1 flex items-center justify-center mx-6 mt-20">
+        <Text className="text-3xl text-center text-[#627bb1] font-bold">Your Responses</Text>
+        <Image className="aspect-square h-80" source={require('../assets/images/womanSearchingBook.jpg')}/>
+        <View className="bg-[#667bb1] m-2 items-center p-2 rounded-md shadow-lg shadow-black ">
+        <Text className="text-3xl p-2 text-white">{profiledata.name}</Text>
+        {user && <Text className="text-xl p-1 text-white">Logged in as {user.name}</Text>}
         </View>
-        <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 w-1/2 h-10 justify-center items-center" onPress={editProfile}><Text>Edit Profile</Text></TouchableOpacity>
 
         {data && (
-        data.map((e) =>
-        <ResponseCard
-        response={e.text_content}
-        user={e.user_id}
-        key={e.response_id}
-        />
-      ))}
+          data.map((e) =>
+          <ResponseCard
+          response={e.text_content}
+          user={e.user_id}
+          key={e.response_id}
+          />
+          ))}
 
-        <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 w-1/2 h-10 justify-center items-center" onPress={logout}><Text>Log Out</Text></TouchableOpacity>
+<View className="buttonContainer flex-1 flex-row mx-10 w-sreen">
+          <TouchableOpacity className="mt-6 shadow-lg rounded-lg basis-32 bg-blue-200 m-1 h-10 justify-center items-center" onPress={editProfile}><Text>Edit Profile</Text></TouchableOpacity>
+        <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 basis-32 m-1 h-10 justify-center items-center" onPress={logout}><Text>Log Out</Text></TouchableOpacity>
+        </View>
+        </View>
+             </View>
       </ScrollView>
     );
   }
