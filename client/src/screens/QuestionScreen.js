@@ -40,8 +40,7 @@ useEffect(() => {
     };
 
     return (
-      <ScrollView>
-      <View className="h-screen w-screen bg-white">
+<ScrollView contentContainerStyle={{ minHeight: '100%' }} className="bg-white">
         <View className="flex-1 flex items-center justify-center mx-6 mt-10">
         <Text className="text-4xl text-center text-[#627bb1] font-bold">Daily Question</Text>
 
@@ -70,7 +69,6 @@ useEffect(() => {
 
         <Text className="pt-1 px-1 text-gray-500 text-sm text-center">Answer the question above to enter the pool. Your answer must be 140 characters of less.</Text>
         </View>
-      </View>
       </ScrollView>
     );
   }

@@ -43,8 +43,7 @@ export default function ProfileScreen() {
   }, [])
 
     return (
-<ScrollView>
-      <View className="h-screen w-screen bg-white">
+<ScrollView contentContainerStyle={{ minHeight: '100%' }} className="bg-white">
         <View className="flex-1 flex items-center justify-center mx-6 mt-20">
         <Text className="text-3xl text-center text-[#627bb1] font-bold">Your Responses</Text>
         <Image className="aspect-square h-80" source={require('../assets/images/womanSearchingBook.jpg')}/>
@@ -63,11 +62,16 @@ export default function ProfileScreen() {
           ))}
 
 <View className="buttonContainer flex-1 flex-row mx-10 w-sreen">
-          <TouchableOpacity className="mt-6 shadow-lg rounded-lg basis-32 bg-blue-200 m-1 h-10 justify-center items-center" onPress={editProfile}><Text>Edit Profile</Text></TouchableOpacity>
-        <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 basis-32 m-1 h-10 justify-center items-center" onPress={logout}><Text>Log Out</Text></TouchableOpacity>
+          <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 m-1 h-10 justify-center items-center" onPress={editProfile}><Text>Edit Profile</Text></TouchableOpacity>
+        <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 m-1 h-10 justify-center items-center" onPress={logout}><Text>Log Out</Text></TouchableOpacity>
+        <TouchableOpacity
+      onPress={fetchData}
+      className="mt-6 shadow-lg rounded-lg bg-blue-200 basis-32 m-1 h-10 justify-center items-center">
+        <Text>Click to refresh responses</Text>
+        </TouchableOpacity>
         </View>
         </View>
-             </View>
+            
       </ScrollView>
     );
   }
